@@ -3,8 +3,15 @@ Scripts used in the unofficial HaxeFlixel template.
 
 ## Install
 
-1. Then you can install the scripts on your relevant project
+Then you can install the scripts on your relevant project
 `npm i hf-scripts`
+
+You need to make sure your project has the following dependencies installed before this will work:
+- chokidar-cli
+- concurrently
+- http-server
+
+The scripts file depends on the commands form these packages to work properly.
 
 ## Config file
 
