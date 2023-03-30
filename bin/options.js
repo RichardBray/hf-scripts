@@ -30,9 +30,12 @@ const defaultOptions = {
 Object.freeze(defaultOptions);
 
 let options = defaultOptions;
-const pathToConfigFile = 'config.js'
+const pathToConfigFile = 'config.js';
 
-fs.access(pathToConfigFile, fs.constants.F_OK, () => {
+fs.access(pathToConfigFile, fs.constants.F_OK, (err) => {
+  if (err) {
+    return;
+  }
   fs.readFile(pathToConfigFile, 'utf8', (err, data) => {
     if (err) {
       logger.error("There's an issue with your configuration file.");

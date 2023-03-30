@@ -15,7 +15,7 @@ export default async function startup() {
 
   renderTitle();
 
-  if (options.compServerMode) logger.warn(`⚠️ \s Please make sure you have the comp server running on port ${options.compServerPort}\n`)
+  if (options.compServerMode) logger.warn(`⚠️  Please make sure you have the comp server running on port ${options.compServerPort}\n`)
   if (allowFirstBuild && options.compServerMode) await buildGameForWeb();
 
   startConcurrently();
@@ -52,7 +52,7 @@ function startConcurrently() {
 
   logger.log(logMsg);
 
-  const watchCmd = "chokidar 'src/**/*.hx' -c 'node bin/watcher.js'";
+  const watchCmd = "chokidar 'src/**/*.hx' -c 'node ./node_modules/hf-scripts/bin/watcher.js'";
   const serverCmd = `http-server export/html5/bin --port ${options.webServerPort} -c0`;
   const compServerCmd = `haxe -v --wait ${options.compServerPort}`;
 
