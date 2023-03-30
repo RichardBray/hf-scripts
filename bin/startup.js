@@ -7,6 +7,10 @@ import logger from './services/Logger.js';
 import spinner from './services/Spinner.js';
 import options from './options.js';
 
+import pkgJson from '../package.json' assert {
+  type: 'json'
+};
+
 const execPromise = promisify(exec);
 
 export default async function startup() {
@@ -22,7 +26,7 @@ export default async function startup() {
 }
 
 function renderTitle() {
-  logger.log('HaxeFlixel Template Scripts v.0.4.3\n');
+  logger.log(`HaxeFlixel Template Scripts v${pkgJson.version}\n`);
 }
 
 async function buildGameForWeb() {
