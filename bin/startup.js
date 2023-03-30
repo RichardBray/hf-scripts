@@ -22,7 +22,7 @@ export default async function startup() {
 }
 
 function renderTitle() {
-  logger.log('HaxeFlixel Template v.0.4.0\n');
+  logger.log('HaxeFlixel Template Scripts v.0.4.3\n');
 }
 
 async function buildGameForWeb() {
@@ -75,3 +75,5 @@ function startConcurrently() {
     `\nYour game is running on http://localhost:${options.webServerPort}\nTo shut it down press <CTRL> + C at any time.\n`
   );
 }
+
+startup();

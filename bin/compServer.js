@@ -21,3 +21,5 @@ export default function startCompServer() {
     `\n Compilation server is now running on port ${options.compServerPort}\n`
   );
 }
+
+startCompServer();
