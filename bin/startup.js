@@ -5,13 +5,14 @@ import { promisify } from 'node:util';
 
 import logger from './services/Logger.js';
 import spinner from './services/Spinner.js';
-import options from './options.js';
+import {calculateOptions} from './options.js';
 
 import pkgJson from '../package.json' assert {
   type: 'json'
 };
 
 const execPromise = promisify(exec);
+const options = await calculateOptions();
 
 export default async function startup() {
   const skipFirstBuildFlag = process.argv[2] === '--skip' || process.argv[2] === '-s';
@@ -26,7 +27,7 @@ export default async function startup() {
 }
 
 function renderTitle() {
-  logger.log(`HaxeFlixel Template Scripts v${pkgJson.version}\n`);
+  logger.log(`HaxeFlixel Scripts v${pkgJson.version}\n`);
 }
 
 async function buildGameForWeb() {
@@ -67,7 +68,7 @@ function startConcurrently() {
   const child = spawn('npx', args, { stdio: ['pipe', 'inherit', 'pipe'] });
 
   child.stderr.on('data', (data) => {
-    logger.warn(`child stderr: ${data}`);
+    logger.error(`child stderr: ${data}`);
   });
 
   child.on('error', (err) => {

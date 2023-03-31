@@ -1,5 +1,7 @@
 import fs from "node:fs";
+import path from "node:path";
 import logger from './services/Logger.js';
+
 
 const defaultOptions = {
   /**
@@ -29,20 +31,20 @@ const defaultOptions = {
 
 Object.freeze(defaultOptions);
 
-let options = defaultOptions;
-const pathToConfigFile = 'config.js';
 
-fs.access(pathToConfigFile, fs.constants.F_OK, (err) => {
-  if (err) {
-    return;
+export async function calculateOptions() {
+  const pathToConfigFile = 'config.json';
+  const fullPathToConfig = path.resolve(pathToConfigFile);
+
+  try {
+    const data = await fs.promises.readFile(fullPathToConfig);
+    const parsedData = JSON.parse(data);
+    return { ...defaultOptions, ...parsedData };
+  } catch (err) {
+    return defaultOptions;
   }
-  fs.readFile(pathToConfigFile, 'utf8', (err, data) => {
-    if (err) {
-      logger.error("There's an issue with your configuration file.");
-      return;
-    }
-    options = { ...defaultOptions, ...data };
-  });
-});
+}
 
-export default options;
+
+
+export default calculateOptions();
