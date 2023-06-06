@@ -35,7 +35,7 @@ async function buildGameForWeb() {
   spinner.start();
 
   try {
-    const { stderr } = await execPromise(`lix lime build html5 -debug --connect ${options.compServerPort}`);
+    const { stderr } = await execPromise(`npx lix lime build html5 -debug --connect ${options.compServerPort}`);
 
     spinner.stop();
     logger.success(`✅ Done!`);

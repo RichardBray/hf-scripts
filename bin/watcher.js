@@ -18,7 +18,8 @@ async function watcher() {
 }
 
 async function buildGame() {
-  const buildCmd = (options.useCompServer) ? `lix lime build html5 -debug --connect ${options.compServerPort}` : 'lix lime build html5 -debug';
+  const baseCmd = 'npx lix lime build html5 -debug'
+  const buildCmd = (options.useCompServer) ? `${baseCmd} --connect ${options.compServerPort}` : baseCmd;
   logger.log('🔨 Building game!!');
   spinner.start();
 
@@ -35,7 +36,7 @@ async function buildGame() {
     }
 
   } catch (err) {
-    logger.error(`buildGameUsingCompServer failed to run: ${err}`);
+    logger.error(`buildGame failed to run: ${err}`);
     process.exit(1);
   }
 }
