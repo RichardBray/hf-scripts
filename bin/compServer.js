@@ -1,9 +1,10 @@
 #! /usr/bin/env node
 
 import { spawn } from 'node:child_process';
-
 import logger from './services/Logger.js';
-import options from './options.js';
+import { calculateOptions } from './options.js';
+
+const options = await calculateOptions();
 
 export default function startCompServer() {
   const command = spawn('haxe', ['-v', '--wait', options.compServerPort], { stdio: ['pipe', 'inherit', 'pipe'] });

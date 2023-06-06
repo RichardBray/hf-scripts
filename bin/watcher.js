@@ -5,24 +5,25 @@ import { promisify } from 'node:util';
 
 import logger from './services/Logger.js';
 import spinner from './services/Spinner.js';
-
-import options from './options.js';
+import { calculateOptions } from './options.js';
 
 const execPromise = promisify(exec);
+const options = await calculateOptions();
 
 async function watcher() {
-  await buildGameUsingCompServer();
+  await buildGame();
   spinner.stop();
   if (options.displayNotification) displayNotification();
   logger.success(`[ϟ] ✅ Done!`);
 }
 
-async function buildGameUsingCompServer() {
+async function buildGame() {
+  const buildCmd = (options.useCompServer) ? `lix lime build html5 -debug --connect ${options.compServerPort}` : 'lix lime build html5 -debug';
   logger.log('🔨 Building game!!');
   spinner.start();
 
   try {
-    const { stdout, stderr } = await execPromise(`lix lime build html5 -debug --connect ${options.compServerPort}`);
+    const { stdout, stderr } = await execPromise(buildCmd);
 
     if (stdout) {
       logger.log(stdout);

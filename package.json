@@ -1,6 +1,6 @@
 {
   "name": "hf-scripts",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "description": "Scripts for the hf template project",
   "main": "bin/index.js",
   "bin": {
@@ -16,7 +16,7 @@
   "author": "Richard Oliver Bray",
   "license": "MIT",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
   "dependencies": {
     "log-update": "^5.0.1",
     "chokidar-cli": "^3.0.0",
-    "concurrently": "^6.4.0",
-    "http-server": "^14.0.0"
+    "concurrently": "^8.1.0",
+    "http-server": "^14.1.1"
   }
 }

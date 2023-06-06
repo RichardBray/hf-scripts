@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import logger from './services/Logger.js';
 
 
 const defaultOptions = {
@@ -12,10 +11,10 @@ const defaultOptions = {
    * If this is set to true it will connect to the `compServerPort`.
    * And cache a HTML5 build of the game if `allowFirstBuild` is true to speed up subsequent builds.
    */
-  compServerMode: true,
+  useCompServer: true,
   /**
    * Builds the game for HTML5 before running the webserver.
-   * Used for caching purposes so only works if `compServerMode` is true.
+   * Used for caching purposes so only works if `useCompServer` is true.
    */
   allowFirstBuild: true,
   /**
@@ -44,7 +43,3 @@ export async function calculateOptions() {
     return defaultOptions;
   }
 }
-
-
-
-export default calculateOptions();

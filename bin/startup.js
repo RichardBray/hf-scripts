@@ -5,7 +5,7 @@ import { promisify } from 'node:util';
 
 import logger from './services/Logger.js';
 import spinner from './services/Spinner.js';
-import {calculateOptions} from './options.js';
+import { calculateOptions } from './options.js';
 
 import pkgJson from '../package.json' assert {
   type: 'json'
@@ -20,8 +20,8 @@ export default async function startup() {
 
   renderTitle();
 
-  if (options.compServerMode) logger.warn(`⚠️  Please make sure you have the comp server running on port ${options.compServerPort}\n`)
-  if (allowFirstBuild && options.compServerMode) await buildGameForWeb();
+  if (options.useCompServer) logger.warn(`⚠️  Please make sure you have the comp server running on port ${options.compServerPort}\n`)
+  if (allowFirstBuild && options.useCompServer) await buildGameForWeb();
 
   startConcurrently();
 }
@@ -51,9 +51,9 @@ async function buildGameForWeb() {
 }
 
 function startConcurrently() {
-  const logMsg = options.compServerMode
-    ? '[ϟ] Starting file watcher and web server'
-    : '[ϟ] Starting file watcher, web and compilation server';
+  const logMsg = options.useCompServer
+    ? '[ϟ] Starting file watcher, web and compilation server'
+    : '[ϟ] Starting file watcher and web server';
 
   logger.log(logMsg);
 
