@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 
 import { spawn } from 'node:child_process';
-import logger from './services/Logger.js';
-import { calculateOptions } from './options.js';
+import logger from './utils/Logger.js';
+import calculateOptions from './options.js';
 
 const options = await calculateOptions();
 

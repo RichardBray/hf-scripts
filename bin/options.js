@@ -31,7 +31,7 @@ const defaultOptions = {
 Object.freeze(defaultOptions);
 
 
-export async function calculateOptions() {
+export default async function calculateOptions() {
   const pathToConfigFile = 'config.json';
   const fullPathToConfig = path.resolve(pathToConfigFile);
 
